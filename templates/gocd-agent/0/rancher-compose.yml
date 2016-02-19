@@ -19,6 +19,14 @@
       required: true
       default: 1024
       type: "int"
+    - variable: "volume_work"
+      description: |
+        Work volume to save the pipeline data of the go agent.
+        If you have more independent agents ensure you this path is unique.
+      label: "Work volume:"
+      required: true
+      default: "/var/lib/docker/go-agent-0-work"
+      type: "string"
     - variable: "goserver_ip"
       description: |
         Choose the gocd service to connect. 

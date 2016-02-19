@@ -4,10 +4,13 @@ gocd-agent:
     gocd.role: agent
   tty: true
   image: rawmind/rancher-goagent:16.2.1
+  volumes:
+    - ${volume_work}:/opt/go-agent/pipelines
   external_links:
-  - ${goserver_ip}:gocd-server.rancher.internal
+    - ${goserver_ip}:gocd-server.rancher.internal
   environment:
-  - AGENT_MEM=${mem_initial}m
-  - AGENT_MAX_MEM=${mem_max}m
-  - GO_SERVER=gocd-server.rancher.internal
-  - GO_SERVER_PORT=${goserver_port}
+    - AGENT_MEM=${mem_initial}m
+    - AGENT_MAX_MEM=${mem_max}m
+    - HOST_PIPELINES_VOL=${volume_work}
+    - GO_SERVER=gocd-server.rancher.internal
+    - GO_SERVER_PORT=${goserver_port}
